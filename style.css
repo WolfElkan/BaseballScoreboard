@@ -1,0 +1,151 @@
+#scoreboard {
+	border: solid black 2px;
+	background-color: green;
+	text-align: center;
+	padding: 20px;
+	display: inline-block;
+}
+
+#balls, #strikes, #outs {
+	display: inline-block;
+	width: 20%;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 32px;
+}
+
+#bases {
+	display: inline-block;
+	width: 15%;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	/*font-size: 32px;*/
+	margin-right: : 10px;
+	vertical-align: bottom;
+}
+
+.score {
+	background-color: black;
+	margin: 20px auto;
+	display: inline-block;
+}
+
+#score * td:nth-child(1) {
+	width: 120px;
+	height: 60px;
+	padding: 0;
+	/*vertical-align: bottom;*/
+}
+
+.score * td, th {
+	color: white;
+	background-color: green;
+	font-size: 32px;
+	width: 50px;
+	text-align: center;
+	height: 60px;
+}
+
+.score, .score * td, th {
+	border: solid black 1px;
+}
+
+#score {
+	border-right: none;
+}
+#total {
+	border-left: none;
+}
+
+.circles div {
+	height: 30px;
+	width: 30px;
+	border-radius: 100%;
+	background-color: yellow;
+	display: inline-block;
+}
+
+.foulcircles {
+	height: 10px;
+}
+
+.foulcircles div {
+	height: 10px;
+	width: 10px;
+	border-radius: 100%;
+	background-color: yellow;
+	display: inline-block;
+	margin: 0 2px;
+}
+
+#bases {
+	font-weight: normal;
+}
+
+div.bs, div.plate {
+	color: black;
+	height: auto;
+	padding: 6px 0;
+}
+
+div.bs {
+	border-radius: 20%;
+}
+
+div.plate {
+	border-radius: 0;
+	border-top: 0;
+	font-family: sans-serif;
+	font-weight: bold;
+	background-color: white;
+}
+
+.base {
+	display: inline-block;
+	height: 28px;
+	width: 30px;
+	border: solid black 1px;
+	border-collapse: 100%;
+	text-align: center;
+	padding-top: 5px;
+	font-size: 20px;
+	border: solid 1px;
+	background-color: white;
+}
+
+#diamond tr td {
+	text-align: center;
+	height: 30px; width: 30px;
+}
+
+.true {
+	background-color: red!important;
+}
+
+.pitchcount {
+	color: white;
+}
+
+.current_inning {
+	background-color: #2a2!important;
+}
+
+#teamname {
+	white-space: nowrap;
+}
+
+img {
+	border: white;
+	height: 50px;
+	/*margin-top: 10px;*/
+}
+
+body {
+	/*zoom: 220%;*/
+}
+
+.inning {
+	font-weight: bold;
+}

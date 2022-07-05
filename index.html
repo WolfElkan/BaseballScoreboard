@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Baseball Scoreboard</title>
+	<script type="text/javascript" src="../jQuery/external/jquery/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="get.js"></script>
+	<script type="text/javascript" src="roster.js"></script>
+	<script type="text/javascript" src="game.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="logos.js"></script>
+</head>
+<body>
+	<center>
+	<div id="scoreboard">
+		<div id="counters">
+			<div id="bases">
+				<div class="circles">
+					<table>
+						<tr>
+							<td></td>
+							<td><div class="bs" id="bs2">2</div></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><div class="bs" id="bs3">3</div></td>
+							<td><span class="pitchcount"></span></td>
+							<td><div class="bs" id="bs1">1</div></td>
+						</tr>
+						<tr>
+<!-- 							<td></td>
+							<td><div class="plate" id="bs0">&nbsp;</span></td>
+							<td></td>
+ -->						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="balls">
+				<div>Balls</div>
+				<div class="circles">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<div id="strikes">
+				<div>Strikes</div>
+				<div class="circles">
+					<div></div>
+					<div></div>
+				</div>
+				<div class="foulcircles">
+				</div>
+			</div>
+			<div id="outs">
+				<div>Outs</div>
+				<div class="circles">
+					<div></div>
+					<div></div>
+				</div>
+		</div>
+		</div>
+		<table class="score" id="score">
+			<thead>
+				<th>Team</th>
+				<th>1</th>
+			</thead>
+			<tr id="away">
+				<td class="away teamname">
+					<!-- &#x1f34e; -->
+					<img>
+					<!-- AWAY -->
+				</td>
+				<td class="current_inning"></td>
+			</tr>
+			<tr id="home">
+				<td class="home teamname">
+					<!-- &#x1f34a; -->
+					<img>
+					<!-- HOME -->
+				</td>
+				<td></td>
+			</tr>
+		</table><table class="score" id="total">
+			<thead>
+				<th>R</th>
+				<th>H</th>
+				<th>E</th>
+			</thead>
+			<tr id="away">
+				<td class="runs">0</td>
+				<td class="hits">0</td>
+				<td class="errors">0</td>
+			</tr>
+			<tr id="home">
+				<td class="runs">0</td>
+				<td class="hits">0</td>
+				<td class="errors">0</td>
+			</tr>
+		</table>
+		<span class="arrow">&gt;</span><span class="inning">0</span>
+	</div>
+	</center>
+	<div class="controls">
+		<table id="diamond">
+			<tr>
+				<td><button class="a2" id="a2">&#x2199;</button></td>
+				<td class="base" class="b2" id="b2">2</td>
+				<td><button class="a1" id="a1">&#x2196;</button></td>
+			</tr>
+			<tr>
+				<td class="base" class="b3" id="b3">3</td>
+				<td></td>
+				<td class="base" class="b1" id="b1">1</td>
+			</tr>
+			<tr>
+				<td><button class="a3" id="a3">&#x2198;</button></td>
+				<td class="base">&#x2302;</td>
+				<td><button class="a0" id="a0">&#x2197;</button></td>
+			</tr>
+		</table>
+
+		<button id="ball">Ball</button>
+		<button id="strike">Strike</button>
+		<button id="foul">Foul</button>
+		<button id="bout">Batter Out</button>
+		<button id="out">Out</button>
+		<br>
+		<button id="single">Standard Single</button>
+		<button id="double">Standard Double</button>
+		<button id="triple">Standard Triple</button>
+		<button id="homerun">Home Run</button>
+		<br>
+		<button id="error_in">Infield Error</button>
+		<button id="error_out">Outfield Error</button>
+	</div>
+	<br>
+	<button id="fullscreen">Fullscreen</button>
+	<input id="keys" type="text" name="keys">
+	<table>
+		<tr>
+			<td>
+				
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
