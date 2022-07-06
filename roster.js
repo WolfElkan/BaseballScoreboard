@@ -85,7 +85,7 @@ var Keene = [
 
 var Sanford = [
 	null,
-	null,
+	new Player( 1,'F' ,'Wolf',    'Elkan',      61, 155, R, R, 'Landmark Col',                    3, 'Bethesda, MD'),
 	new Player( 2,'O' ,'Alex',    'Knapp',      68, 180, R,	R, 'George Mason U',                  2, 'Lancaster, PA'),
 	null,
 	new Player( 4,'I' ,'Quinn',   'McDaniel',   71, 175, R,	R, 'Maine Orono (U of)',              3, 'Eliot, ME'),
@@ -129,9 +129,27 @@ var Sanford = [
 
 // var roster = {'away': BAL, 'home': BOS}
 
+// var roster = {
+// 	'away':[4,8,7,23,24,40,19,5,16],
+// 	'home':[19,13,20,29,3,40,24,30,22],
+// }
+
+var Abbott = Costello = [
+	null,
+	new Player(1,'1B',"Who"),
+	new Player(2,'2B',"What"),
+	new Player(3,'3B',"I Don't Know"),
+	new Player(4,'LF',"Why"),
+	new Player(5,'CF',"Because"),
+	new Player(6,'P' ,"Tomorrow"),
+	new Player(7,'C' ,"Today"),
+	new Player(8,'SS',"I Don't Give A Darn"),
+	new Player(9,'RF',"Nobody"),
+]
+
 var roster = {
-	'away':[4,8,7,23,24,40,19,5,16],
-	'home':[19,13,20,29,3,40,24,30,22],
+	'away':[1,2,3,4,5,6,7,8,9],
+	'home':[1,2,3,4,5,6,7,8,9],
 }
 
 function get_players(away, home, order) {
@@ -146,7 +164,7 @@ function get_players(away, home, order) {
 	return roster
 }
 
-roster = get_players(Sanford, Keene, roster)
+roster = get_players(Abbott, Costello, roster)
 
 
 

@@ -49,7 +49,7 @@ function newGame() {
 	for (var i = 0; i < NBASES + 1; i++) {
 		bases.push(null)
 	}
-	// bases[0] = roster.away[0]
+	bases[0] = roster.away[0]
 
 	homein = false
 	inning = 1
@@ -73,13 +73,13 @@ function RENDER() {
 	}
 	$(`#bs0`).text(bases[0].jersey)
 
-	// for (var i = 0; i < bases.length; i++) {
-	// 	if (bases[i]) {
-	// 		$(`#bs${i}`).text(bases[i].jersey)
-	// 	} else {
-	// 		$(`#bs${i}`).html('&nbsp;')
-	// 	}
-	// }
+	for (var i = 0; i < bases.length; i++) {
+		if (bases[i]) {
+			$(`#bs${i}`).text(bases[i].jersey)
+		} else {
+			$(`#bs${i}`).html('&nbsp;')
+		}
+	}
 
 	var _balls = $('#balls div.circles div')
 	for (var i = 0; i < 3; i++) {
@@ -112,6 +112,8 @@ function RENDER() {
 
 }
 
+// var NEXT_BATTER = false
+
 function render(condition,element) {
 	if (condition) {
 		$(element).addClass('true')
@@ -140,8 +142,9 @@ function ball() {
 	balls++
 	if (balls >= 4) {
 		// WALK
-		advance(1, true)
-		next_batter()
+		advance(0, true)
+		// console.log('walk')
+		// next_batter(0)
 	}
 	RENDER()
 }
@@ -153,7 +156,9 @@ function strike() {
 	if (strikes >= 3) {
 		// STRIKE OUT
 		out()
-		next_batter()
+		// console.log('strike out')
+		inc_batter(1)
+		next_batter(0)
 	}
 	RENDER()
 }
@@ -173,14 +178,15 @@ function out() {
 	if (outs >= 3) {
 		next_inning()
 	}
-	three_run_rule()
+	mercy_rule()
 	RENDER()
 }
 
 function hit_by_pitch() {
 	pitch()
 	advance(1, true)
-	next_batter()
+	// console.log('hit_by_pitch')
+	next_batter(0)
 	RENDER()
 }
 
@@ -198,7 +204,8 @@ function standard_hit(nBases) {
 	} else {
 		hits['away']++
 	}
-	next_batter()
+	// console.log([null,'single','double','triple'][nBases])
+	next_batter(0)
 	RENDER()
 }
 
@@ -219,15 +226,21 @@ function advance(base, force=false) {
 		while (bases[i]) {
 			i++
 		}
-		bases[i] = true
+		while (i > 0) {
+			bases[i] = bases[i-1]
+			i--
+		}
+		// bases[i] = true
 	} else {
 		if (bases[base] && !bases[base+1]) {
+			bases[base+1] = bases[base]
 			bases[base] = false
-			bases[base+1] = true
-			if (base == 0) next_batter(0)
+		// 	bases[base+1] = true
+			// if (base == 0) next_batter(0)
 		}
 	}
-	bases[0] = true
+	// console.log(base, force, bases)
+	bases[0] = next_batter(base == 0 ? 1 : 0)
 	if (bases[4]) {
 		run()
 		bases[4] = false
@@ -240,12 +253,12 @@ function run() {
 	get_inning().text(runs)
 	score[homein ? 'home' : 'away'][inning] = runs
 	if (homein && inning >= INNINGS && sum(score['home']) > sum(score['away'])) game_over()
-	three_run_rule()
+	mercy_rule()
 	RENDER()
 	return runs
 }
 
-function three_run_rule() {
+function mercy_rule() {
 	if (true) {return false}
 
 	if (runs >= 3 && !(bases[1]||bases[2]||bases[3])) next_inning()
@@ -259,15 +272,23 @@ function baseout(_base) {
 	}
 }
 
-function next_batter(inc=1) {
-	// console.log('next_batter', inc)
+function inc_batter(inc=1) {
 	let team = homein ? 'home' : 'away'
 	batting_order[team] += inc // find another way
 	batting_order[team] %= 9
+	return roster[team][batting_order[team]]
+}
+
+function next_batter(inc=1) {
+	// console.log('next_batter', inc)
+	batter = inc_batter(inc)
+	console.log(bases)
+	bases[0] = batter
 	// bases[0] = roster[team][batting_order[team]]
-	$('.plate').text(bases[0])
+	// $('.plate').text(bases[0].jersey)
 	strikes = 0
 	balls = 0
+	// console.log(roster,batting_order,team)
 }
 
 function new_pitcher() {
@@ -276,6 +297,7 @@ function new_pitcher() {
 }
 
 function next_inning() {
+	// console.log('next_inning')
 	// console.log('next_inning')
 	next_batter(0)
 	outs = 0
@@ -357,7 +379,7 @@ function importGame(last) {
 }
 
 function log(key) {
-	console.log(key, new Date().toISOString())
+	// console.log(key, new Date().toISOString())
 }
 
 function single_keypress(key, event, logging=true) {
@@ -377,7 +399,7 @@ function single_keypress(key, event, logging=true) {
 		case 'p': // Batter Out
 			pitch()
 			out()
-			next_batter()
+			next_batter(0)
 			RENDER()
 		break
 		case 'o':
@@ -426,7 +448,7 @@ function single_keypress(key, event, logging=true) {
 			$('#b3').click()
 		break
 		case 'n':
-			next_batter()
+			next_batter(0)
 			RENDER()
 		break
 		case '+':
